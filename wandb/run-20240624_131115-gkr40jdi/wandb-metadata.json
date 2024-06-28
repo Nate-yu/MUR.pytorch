@@ -1,0 +1,20 @@
+{
+    "root": "D:\\CVCode\\my_project",
+    "program": "main.py",
+    "codePath": "main.py",
+    "startedAt": "2024-06-24T13:11:15.961307",
+    "host": "Nate",
+    "username": "12279",
+    "executable": "D:\\IDE\\Miniconda\\envs\\cv\\python.exe",
+    "os": "Windows-10-10.0.22631-SP0",
+    "python": "3.8.19",
+    "cpu_count": 16,
+    "args": [],
+    "state": "killed",
+    "jobType": null,
+    "mode": "run",
+    "name": "bert",
+    "project": "UR",
+    "heartbeatAt": "2024-06-24T13:12:50.868152",
+    "exitcode": 255
+}

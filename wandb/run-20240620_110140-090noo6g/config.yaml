@@ -1,0 +1,176 @@
+wandb_version: 1
+
+_wandb:
+  desc: null
+  value:
+    cli_version: 0.8.35
+    code_path: code/main.py
+    framework: torch
+    is_jupyter_run: false
+    is_kaggle_kernel: false
+    python_version: 3.8.19
+alpha_scale:
+  desc: null
+  value: 1
+augmenter:
+  desc: null
+  value: normal_gaussian
+batch_size:
+  desc: null
+  value: 24
+beta_scale:
+  desc: null
+  value: 1
+checkpoint_path:
+  desc: null
+  value: ./ckpt
+compositor:
+  desc: null
+  value: transformer
+config_path:
+  desc: null
+  value: configs/shoes_config.json
+dataset:
+  desc: null
+  value: shoes
+decay_step:
+  desc: null
+  value: 35
+decay_step_second:
+  desc: null
+  value: 42
+device_idx:
+  desc: null
+  value: '0'
+epoch:
+  desc: null
+  value: 1
+evaluator:
+  desc: null
+  value: simple
+experiment_description:
+  desc: null
+  value: bert
+experiment_dir:
+  desc: null
+  value: experiments
+export_root:
+  desc: null
+  value: experiments\bert_2024-06-20_0
+feature_size:
+  desc: null
+  value: 512
+gamma:
+  desc: null
+  value: 0.1
+gamma_scale:
+  desc: null
+  value: 1
+global_styler:
+  desc: null
+  value: global2
+heads:
+  desc: null
+  value: 12
+image_encoder:
+  desc: null
+  value: resnet50_layer4
+img_size:
+  desc: null
+  value: 224
+layers:
+  desc: null
+  value: 12
+lr:
+  desc: null
+  value: 0.0004
+lr_scheduler:
+  desc: null
+  value: MultiStepWithWarmup
+lstm_hidden_size:
+  desc: null
+  value: 512
+margin:
+  desc: null
+  value: 12
+metric_loss:
+  desc: null
+  value: batch_based_aleatoric_loss
+momentum:
+  desc: null
+  value: 0.9
+norm_scale:
+  desc: null
+  value: 4
+num_gpu:
+  desc: null
+  value: 1
+num_heads:
+  desc: null
+  value: 8
+num_workers:
+  desc: null
+  value: 0
+optimizer:
+  desc: null
+  value: Adam
+output_dim:
+  desc: null
+  value: 512
+patch_size:
+  desc: null
+  value: 16
+random_seed:
+  desc: null
+  value: 19535
+selector:
+  desc: null
+  value: all
+shuffle:
+  desc: null
+  value: true
+stride:
+  desc: null
+  value: true
+stride_size:
+  desc: null
+  value: 16
+text_encoder:
+  desc: null
+  value: roberta
+text_feature_size:
+  desc: null
+  value: 512
+topk:
+  desc: null
+  value: 1,5,10,50
+trainer:
+  desc: null
+  value: tirg
+use_transform:
+  desc: null
+  value: true
+vocab_path:
+  desc: null
+  value: ''
+vocab_threshold:
+  desc: null
+  value: 0
+wandb_account_name:
+  desc: null
+  value: yubin06
+wandb_project_name:
+  desc: null
+  value: UR
+warmup_iters:
+  desc: null
+  value: 5
+weight_decay:
+  desc: null
+  value: 5.0e-05
+width:
+  desc: null
+  value: 768
+word_embedding_size:
+  desc: null
+  value: 512
