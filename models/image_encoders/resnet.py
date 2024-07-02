@@ -3,7 +3,7 @@ from typing import Tuple, Any
 import torch
 import torch.nn as nn
 import torch.nn.functional as F
-from torchvision.models import resnet18, resnet50
+from torchvision.models import resnet18, resnet50, ResNet18_Weights, ResNet50_Weights
 from models.image_encoders.od_resnet import od_resnet50
 
 
@@ -14,7 +14,7 @@ class ResNet18Layer4Lower(AbstractBaseImageLowerEncoder):
     # 初始化ResNet18模型，可以选择是否加载预训练权重
     def __init__(self, pretrained=True):
         super().__init__()
-        self._model = resnet18(weights=pretrained)
+        self._model = resnet18(weights=ResNet18_Weights.IMAGENET1K_V1)
 
     # 定义了数据如何通过网络流动，从第一层到第四层，并返回第四层的输出以及前三层的输出。
     def forward(self, x: torch.Tensor) -> Tuple[torch.Tensor, Any]: # 这里的“->”符号表示函数返回的数据类型
@@ -69,7 +69,7 @@ class GAPResNet18Layer4Upper(AbstractBaseImageUpperEncoder):
 class ResNet50Layer4Lower(AbstractBaseImageLowerEncoder):
     def __init__(self, pretrained=True, stride=False):
         super().__init__()
-        self._model = resnet50(pretrained=pretrained)
+        self._model = resnet50(weights=ResNet50_Weights.IMAGENET1K_V1)
         # self._model = od_resnet50()
         # avg pooling to global pooling
         if stride == True:
