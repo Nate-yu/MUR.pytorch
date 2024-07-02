@@ -7,9 +7,9 @@ TEXT_MODEL_CODES = [SimpleLSTMEncoder.code(), NormalizationLSTMEncoder.code(), S
 
 
 def text_encoder_factory(vocabulary: AbstractBaseVocabulary, config: dict) -> AbstractBaseTextEncoder:
-    model_code = config['text_encoder']
-    feature_size = config['text_feature_size']
-    word_embedding_size = config['word_embedding_size']
+    model_code = config['text_encoder'] # roberta
+    feature_size = config['text_feature_size'] # 512
+    word_embedding_size = config['word_embedding_size'] # lstm特有
     lstm_hidden_size = 512
 
     if model_code == SimpleLSTMEncoder.code():
