@@ -71,8 +71,9 @@ parser.add_argument('--beta_scale', type=float, default=1, help='change the scal
 #########################
 # Optimizer Settings
 #########################
-parser.add_argument('--optimizer', type=str, default='SGD', choices=['SGD', 'Adam', 'RAdam'], help='Optimizer')
-parser.add_argument('--lr', type=float, default=4e-2, help='learning rate (default: 2e-3)')
+parser.add_argument('--optimizer', type=str, default='RAdam', choices=['SGD', 'Adam', 'RAdam'], help='Optimizer')
+# parser.add_argument('--lr', type=float, default=4e-2, help='learning rate (default: 2e-3)')
+parser.add_argument('--lr', type=float, default=1e-4, help='learning rate (default: 2e-3)')
 parser.add_argument('--weight_decay', type=float, default=5e-5, help='l2 regularization lambda (default: 5e-5)')
 parser.add_argument('--momentum', type=float, default=0.9, help='SGD momentum')
 parser.add_argument('--warmup_iters', type=int, default=5, help='num epochs for warmup learning rate')
