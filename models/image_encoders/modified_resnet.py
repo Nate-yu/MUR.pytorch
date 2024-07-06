@@ -149,11 +149,27 @@ class ModifiedResNet(nn.Module):
 
         return x
 
+    def load_pretrained_weights(self, checkpoint_path: str):
+        try:
+            # 尝试使用 torch.jit.load 加载预训练的 TorchScript 模型
+            model = torch.jit.load(checkpoint_path, map_location=torch.device('cpu'))
+            self.load_state_dict(model.state_dict(), strict=False)
+            print(f"Loaded TorchScript pretrained weights from {checkpoint_path}")
+        except RuntimeError:
+            # 如果失败，则尝试使用常规的 torch.load 方法加载预训练的权重
+            checkpoint = torch.load(checkpoint_path, map_location=torch.device('cpu'))
+            state_dict = checkpoint['state_dict'] if 'state_dict' in checkpoint else checkpoint
+            self.load_state_dict(state_dict, strict=False)
+            print(f"Loaded pretrained weights from {checkpoint_path}")
+
 ''' 创建一个新的 ModifiedResNetLower 类，类似于 ResNet18Layer4Lower 和 ResNet50Layer4Lower，用于提取特征 '''
 class ModifiedResNetLower(AbstractBaseImageLowerEncoder):
-    def __init__(self, pretrained=True, layers=[3, 4, 6, 3], output_dim=512, heads=8, input_resolution=(224, 224), width=64):
+    def __init__(self, pretrained=True, layers=[3, 4, 6, 3], output_dim=512,
+                 heads=8, input_resolution=(224, 224), width=64, checkpoint_path=None):
         super().__init__()
         self._model = ModifiedResNet(layers, output_dim, heads, input_resolution, width)
+        if pretrained and checkpoint_path is not None:
+            self._model.load_pretrained_weights(checkpoint_path)
 
     def forward(self, x: torch.Tensor) -> Tuple[torch.Tensor, Any]:
         x = self._model.conv1(x)

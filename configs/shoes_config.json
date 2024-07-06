@@ -34,10 +34,5 @@
     "augmenter": "normal_gaussian",
     "alpha_scale": 1,
     "beta_scale": 1,
-    "patch_size": 16,
-    "stride_size": 16,
-    "width": 768,
-    "layers": 12,
-    "heads": 12,
-    "output_dim": 512
+    "ckpt_path": "./ckpt/RN50.pt"
 }

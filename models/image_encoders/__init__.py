@@ -12,6 +12,7 @@ def image_encoder_factory(config: dict) -> Tuple[AbstractBaseImageLowerEncoder, 
     feature_size = config['feature_size']
     pretrained = config.get('pretrained', True)
     norm_scale = config.get('norm_scale', 4)
+    checkpoint_path = config.get('ckpt_path', None)  # 获取预训练权重的路径
 
     if model_code == 'resnet18_layer4':
         lower_encoder = ResNet18Layer4Lower(pretrained)
@@ -24,7 +25,8 @@ def image_encoder_factory(config: dict) -> Tuple[AbstractBaseImageLowerEncoder, 
         upper_encoder = ResNet50Layer4Upper(lower_feature_shape, feature_size, pretrained=pretrained,
                                             norm_scale=norm_scale)
     elif model_code == 'modified_resnet':
-        lower_encoder = ModifiedResNetLower(pretrained)
+        lower_encoder = ModifiedResNetLower(pretrained, layers=[3, 4, 6, 3], output_dim=512, heads=8,
+                                            input_resolution=(224, 224), width=64, checkpoint_path=checkpoint_path)
         lower_feature_shape = lower_encoder.layer_shapes()['layer4']
         upper_encoder = ModifiedResNetUpper(lower_feature_shape, feature_size, pretrained=pretrained,
                                             norm_scale=norm_scale)
