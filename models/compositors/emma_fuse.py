@@ -28,8 +28,7 @@ class GlobalFeatureExtraction(nn.Module):
         self.norm1 = LayerNorm(dim, 'WithBias')
         self.attn = AttentionBase(dim, num_heads=num_heads, qkv_bias=qkv_bias, )
         self.norm2 = LayerNorm(dim, 'WithBias')
-        self.mlp = Mlp(in_features=dim, out_fratures=dim,
-                       ffn_expansion_factor=ffn_expansion_factor, )
+        self.mlp = Mlp(in_features=dim, out_features=dim,ffn_expansion_factor=ffn_expansion_factor)
 
     def forward(self, x):
         x = x + self.attn(self.norm1(x))
