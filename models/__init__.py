@@ -21,9 +21,9 @@ def create_models(configs, vocabulary):
         'lower_image_encoder': lower_img_encoder,
         'upper_image_encoder': upper_img_encoder,
     }
-    if text_fc != None:
+    if text_fc is not None:
         models['text_fc'] = text_fc
-    if augmenter != None:
+    if augmenter is not None:
         models['augmenter'] = augmenter
     models.update(compositors)
 
