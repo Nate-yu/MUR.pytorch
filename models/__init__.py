@@ -30,6 +30,10 @@ def create_models(configs, vocabulary):
     if configs['num_gpu'] > 1:
         for name, model in models.items():
             models[name] = GradientControlDataParallel(model.cuda())
+    else:
+        for name, model in models.items():
+            models[name] = model.cuda()
+
     return models
 
 
