@@ -37,7 +37,7 @@ class TIRGTrainer(AbstractBaseTrainer):
                 text_features = self.text_encoder(modifiers, attn_mask)
                 text_features = self.text_fc(text_features)
             else:
-                text_features = self.text_encoder(modifiers, len_modifiers)
+                text_features = self.text_encoder(modifiers)  # 只传递 modifiers
 
             composed_ref_features, _ = self.compositor(ref_mid_features, text_features)
             composed_ref_features = self.upper_image_encoder(composed_ref_features)
