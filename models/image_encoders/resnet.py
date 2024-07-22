@@ -4,7 +4,7 @@ import torch
 import torch.nn as nn
 import torch.nn.functional as F
 from torchvision.models import resnet18, resnet50, ResNet18_Weights, ResNet50_Weights
-from models.image_encoders.od_resnet import od_resnet50
+from models.attention_modules.cot_attention import CoTAttention
 
 
 from trainers.abc import AbstractBaseImageLowerEncoder, AbstractBaseImageUpperEncoder
@@ -70,11 +70,10 @@ class ResNet50Layer4Lower(AbstractBaseImageLowerEncoder):
     def __init__(self, pretrained=True, stride=False):
         super().__init__()
         self._model = resnet50(weights=ResNet50_Weights.IMAGENET1K_V1)
-        # self._model = od_resnet50()
-        # avg pooling to global pooling
-        if stride == True:
-            self._model.layer4[0].downsample[0].stride = (1,1)
-            self._model.layer4[0].conv2.stride = (1,1)
+        if stride:
+            self._model.layer4[0].downsample[0].stride = (1, 1)
+            self._model.layer4[0].conv2.stride = (1, 1)
+        self.cot_attention = CoTAttention(2048)  # 添加 CoTAttention 模块，输入通道数为 2048
 
     def forward(self, x: torch.Tensor) -> Tuple[torch.Tensor, Any]:
         x = self._model.conv1(x)
@@ -86,6 +85,8 @@ class ResNet50Layer4Lower(AbstractBaseImageLowerEncoder):
         layer2_out = self._model.layer2(layer1_out)
         layer3_out = self._model.layer3(layer2_out)
         layer4_out = self._model.layer4(layer3_out)
+
+        layer4_out = self.cot_attention(layer4_out)  # 通过 CoTAttention 模块
 
         return layer4_out, (layer3_out, layer2_out, layer1_out)
 
