@@ -3,7 +3,7 @@ from typing import Tuple, Any
 import torch
 import torch.nn as nn
 import torch.nn.functional as F
-from torchvision.models import resnet18, resnet50, ResNet18_Weights, ResNet50_Weights
+from torchvision.models import resnet50, ResNet50_Weights
 from models.attention_modules.cot_attention import CoTAttention
 from trainers.abc import AbstractBaseImageLowerEncoder, AbstractBaseImageUpperEncoder
 
