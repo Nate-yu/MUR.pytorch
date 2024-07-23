@@ -11,7 +11,8 @@ from trainers.abc import AbstractBaseImageLowerEncoder, AbstractBaseImageUpperEn
 class ResNet50Layer4Lower(AbstractBaseImageLowerEncoder):
     def __init__(self, pretrained=True, stride=False):
         super().__init__()
-        self._model = resnet50(weights=ResNet50_Weights.IMAGENET1K_V1)
+        if pretrained:
+            self._model = resnet50(weights=ResNet50_Weights.IMAGENET1K_V1)
         if stride:
             self._model.layer4[0].downsample[0].stride = (1, 1)
             self._model.layer4[0].conv2.stride = (1, 1)
