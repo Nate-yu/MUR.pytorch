@@ -24,7 +24,7 @@ class GAM_Attention(nn.Module):
         b, c, h, w = x.shape
         x_permute = x.permute(0, 2, 3, 1).view(b, -1, c)
         x_att_permute = self.channel_attention(x_permute).view(b, h, w, c)
-        x_channel_att = x_att_permute.permute(0, 3, 1, 2)
+        x_channel_att = x_att_permute.permute(0, 3, 1, 2).sigmoid()
 
         x = x * x_channel_att
 
@@ -39,4 +39,5 @@ if __name__ == '__main__':
     b, c, h, w = x.shape
     net = GAM_Attention(in_channels=c, out_channels=c)
     y = net(x)
-    print(net)
+    # print(net)
+    print(y.shape)

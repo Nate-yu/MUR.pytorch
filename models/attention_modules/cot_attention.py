@@ -53,7 +53,7 @@ class CoTAttention(nn.Module):
 # 实例化CoTAttention模块并测试
 if __name__ == '__main__':
     block = CoTAttention(64)  # 创建一个输入通道数为64的CoTAttention实例
-    input = torch.rand(1, 64, 64, 64)  # 创建一个随机输入
+    input = torch.rand(1, 64, 224, 224)  # 创建一个随机输入
     output = block(input)  # 通过CoTAttention模块处理输入
     print(output.shape)  # 打印输入和输出的尺寸
     print(block)
